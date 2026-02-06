@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Library Management System</h1>
+
+        <form method="GET" action="/">
+            <input type="text" name="search" placeholder="Search by title..." value="<%= search %>">
+            <button type="submit">Search</button>
+        </form>
+
+        <form method="POST" action="/add">
+            <input type="text" name="title" placeholder="Book Title" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <input type="text" name="category" placeholder="Category" required>
+            <button type="submit">Add Book</button>
+        </form>
+
+        <% if (books.length === 0) { %>
+            <p>No books found</p>
+        <% } %>
+
+        <% books.forEach(book => { %>
+            <div class="book-card">
+                <h3><%= book.title %></h3>
+                <p><strong>Author:</strong> <%= book.author %></p>
+                <p><strong>Category:</strong> <%= book.category %></p>
+                <a href="/delete/<%= book.id %>">
+                    <button>Remove</button>
+                </a>
+            </div>
+        <% }) %>
+
+    </div>
+</body>
+</html>
